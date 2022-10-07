@@ -1,0 +1,36 @@
+﻿@model CrudApp.Models.LoginClass
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    .err{
+        color:#f80303;
+    }
+</style>
+
+<h2>Login</h2>
+
+@using(Html.BeginForm("Login","Home",FormMethod.Post))
+{
+    Html.HiddenFor(m => m.Name);
+    Html.HiddenFor(m => m.Id);
+
+                <div class="form-group ">
+                    <label>Email</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Please Enter Ypur Email", data_val = "true", data_val_required = "Please Enter Valid Input" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "err" })
+                    <span class="err">@TempData["Email"]</span>
+
+
+                </div>
+                <div class="form-group ">
+                    <label>Password</label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Please Enter Ypur Password", data_val = "true", data_val_required = "Please Enter Valid Input" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "err" })
+                    <span class="err">@TempData["Pass"]</span>
+
+
+                </div>
+                <button class="btn btn-success"type="submit">Login</button>
+                <button class="btn btn-danger"type="reset">Reset</button>
+            }
